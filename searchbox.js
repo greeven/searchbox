@@ -57,10 +57,11 @@
     return this.each(function() {
       var $input = $(this)
       
+      $(document).ajaxStart(function() { $.searchbox.start() })
+      $(document).ajaxStop(function() { $.searchbox.stop() })
+
       $input
       .focus()
-      .ajaxStart(function() { $.searchbox.start() })
-      .ajaxStop(function() { $.searchbox.stop() })
       .keyup(function() {
         if ($input.val() != this.previousValue) {
           $.searchbox.resetTimer(this.timer)
